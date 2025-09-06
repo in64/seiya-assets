@@ -28,7 +28,7 @@ jobs:
             https://api.github.com/repos/in64/seiya-docker/zipball/main
           mkdir -p ./source
           unzip source.zip
-          mv in64-*/* ./source/
+          mv in64-*/{README.md,services} ./source/
           curl -s -H "Authorization: token ${{ secrets.PAT_TOKEN }}" https://api.github.com/repos/in64/speedup/releases/latest | jq -r '.assets[] | select(.name | test("musl\\.zip$")) | "\(.id) \(.name)"' |
           while read -r ID NAME; do
             ARCH=$(grep -oE 'x86_64|aarch64' <<< "$NAME")
